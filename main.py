@@ -28,6 +28,8 @@ app=FastAPI() #creating an instance of FastAPI
 # async def greet():
 #     return {"message" : "hello... FastAPI"}
 
+
+
 # now we are going to learn about path parameters in fastapi...
 
 #suppose we have to fetch a blog list
@@ -38,6 +40,6 @@ async def index():
 #above function will show {"data" : "blog list"}
 #now we have to fetch a perticular blog info from the blog list.
 
-@app.get('/blog/{id}')
+@app.get('/blog/{id}')          # Here we are passing the id dynamically.
 async def show_blog(id):
     return {"data": "Blog info", "id": id}
