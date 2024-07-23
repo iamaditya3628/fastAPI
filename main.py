@@ -40,6 +40,20 @@ async def index():
 #above function will show {"data" : "blog list"}
 #now we have to fetch a perticular blog info from the blog list.
 
+# @app.get('/blog/{id}')          # Here we are passing the id dynamically.
+# async def show_blog(id):
+#     return {"data": "Blog info", "id": id}
+
+#by running the above code we are getting the id in the form of string but we wanted the id in the form of integer.
+# for that we have to define the type in the function parameter. 
+
+@app.get("/blog/unpublished")                  #fetching this will through an error of integer cant be parsed in string.this error is because of the line by line execution of fastAPI.
+async def unpublished():                       #firstly it will match with the localhost peth, and found unmatched , then it will compare it with the dynamic id function where it find that after blog some string is there so it will take it as a match and after proceding it will found that the str value is then converted into the int and this is not the valid match so it will through an error. to solve this we have to define unpublisd above the dynamic id function.
+    return {"data":"unpublished blogs."}       #here we have defined it above dynamic id. and now it is error free
+
 @app.get('/blog/{id}')          # Here we are passing the id dynamically.
-async def show_blog(id):
+async def show_blog(id: int):
     return {"data": "Blog info", "id": id}
+
+
+
